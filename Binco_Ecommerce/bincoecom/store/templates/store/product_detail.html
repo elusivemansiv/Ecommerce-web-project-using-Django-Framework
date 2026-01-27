@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 20px 50px;
+}
+
+.logo img {
+    height: 50px;
+    
+}
+
+.nav-links ul{
+  
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links a {
+    color: #444444;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.actions {
+   display: flex;
+   align-items: center;
+   gap: 20px;
+   
+}
+
+.actions i {
+   font-size: 18px;
+   cursor: pointer;
+   color: #333;
+}
+
+.appointment-btn {
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid #ff4d30;
+    color: #ff4d30;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    
+}
+    </style>
+</head>
+
+<body>
+
+     <nav class="navbar">
+
+    <div class="logo">
+        <img src="https://static.wikia.nocookie.net/fictionalcompanies/images/8/81/Binco.jpg/revision/latest?cb=20130914005804" alt="">
+    </div>
+
+    <div class="nav-links">
+        <ul>
+        <li> <a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="actions">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <button class="appointment-btn">Login</button>
+        <button class="appointment-btn">Register</button>
+    </div>
+    
+    </nav>
+<div class="container mt-4">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <img src="{{ product.image.url }}" class="img-fluid">
+        </div>
+
+        <div class="col-md-6">
+
+            <h2>{{ product.name }}</h2>
+            <h4>৳ {{ product.price }}</h4>
+
+            <p>{{ product.description }}</p>
+
+            
+                <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">
+                   Add To Cart
+                </a>
+            
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

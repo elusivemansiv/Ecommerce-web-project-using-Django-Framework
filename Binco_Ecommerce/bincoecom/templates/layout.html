@@ -120,6 +120,7 @@
         }
 
     </style>
+        
 </head>
 
 <body>
@@ -155,48 +156,6 @@
     
     </nav>
 
-    <div class="container mt-4">
-
-            <div class="hero-section">
-
-        <div class="hero-text">
-            <h2>Affordable Price For Shopping</h2>
-            <p>More Trash For Less Cash</p>
-        <div class="action-btn">
-            <button class="btn-primary">Discover More</button>
-        </div>
-        </div>
-        
-    </div>
-
-        <h2 align="center"> Trending Products <h2>
-         <br>
-        <div class="row">
-
-            {% for product in products %}
-            <div class="col-md-3 mb-4">
-
-                <div class="card h-100">
-
-                    <img src="{{ product.image.url }}" class="card-img-top" height="200">
-
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">৳ {{ product.price }}</p>
-
-                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary btn-sm">
-                         View Details
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-            {% endfor %}
-
-        </div>
-
-    </div>
 
 </body>
 

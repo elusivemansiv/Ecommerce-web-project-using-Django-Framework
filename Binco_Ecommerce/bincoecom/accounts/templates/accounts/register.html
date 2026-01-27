@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="style.css">
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-   * {
+     <style>
+
+        * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -140,7 +141,7 @@
         </ul>
     </div>
 
-    <div class="actions">
+    {% comment %} <div class="actions">
         <i class="fa-solid fa-bag-shopping"></i>
         <i class="fa-solid fa-magnifying-glass"></i>
         
@@ -150,54 +151,28 @@
         <a href="{% url 'register' %}">
         <button class="appointment-btn">Register</button>
         </a>
-
-    </div>
-    
+    </div> {% endcomment %}
     </nav>
+<br>
+    <h2 align="center">Register</h2>
 
-    <div class="container mt-4">
+<form align="center" method="POST">
+    {% csrf_token %}
 
-            <div class="hero-section">
+    <input type="text" name="username" placeholder="Username" required><br><br>
+    <input type="email" name="email" placeholder="Email" required><br><br>
+    <input type="password" name="password" placeholder="Password" required><br><br>
 
-        <div class="hero-text">
-            <h2>Affordable Price For Shopping</h2>
-            <p>More Trash For Less Cash</p>
-        <div class="action-btn">
-            <button class="btn-primary">Discover More</button>
-        </div>
-        </div>
-        
-    </div>
+    <button type="submit">Register</button>
+</form>
 
-        <h2 align="center"> Trending Products <h2>
-         <br>
-        <div class="row">
-
-            {% for product in products %}
-            <div class="col-md-3 mb-4">
-
-                <div class="card h-100">
-
-                    <img src="{{ product.image.url }}" class="card-img-top" height="200">
-
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">৳ {{ product.price }}</p>
-
-                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary btn-sm">
-                         View Details
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-            {% endfor %}
-
-        </div>
-
-    </div>
+<div align="center">
+<a href="{% url 'login' %}">Already have account? Login</a>
+</div>
 
 </body>
 
 </html>
+
+
+
