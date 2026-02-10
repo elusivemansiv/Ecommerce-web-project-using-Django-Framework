@@ -1,160 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/layout.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Binco Ecommerce</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-     <style>
+{% block title %}Login{% endblock %}
 
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
+{% block content %}
+<h2 align="center">Register</h2>
 
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 20px 50px;
-}
-
-.logo img {
-    height: 50px;
-    
-}
-
-.nav-links ul{
-  
-    list-style: none;
-    display: flex;
-}
-
-.nav-links li {
-    margin-left: 25px;
-}
-
-.nav-links a {
-    color: #444444;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.actions {
-   display: flex;
-   align-items: center;
-   gap: 20px;
-   
-}
-
-.actions i {
-   font-size: 18px;
-   cursor: pointer;
-   color: #333;
-}
-
-.appointment-btn {
-    padding: 10px 20px;
-    background: transparent;
-    border: 1px solid #ff4d30;
-    color: #ff4d30;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    
-}
-
-        .hero-section{
-            height: 520px;
-            background: linear-gradient(
-                rgba(0,0,0,0.6),
-                rgba(0,0,0,0.6)
-            ),
-            url("https://dunb17ur4ymx4.cloudfront.net/packages/images/eaa5ecaa208e1f51c025cf85f84d50d7dfabfce3.jpg")
-            center/cover no-repeat;
-
-            display: flex;
-            align-items: center;
-            padding: 0 80px;
-            border-radius: 12px;
-            margin: 20px 50px;
-        }
-
-        .hero-text {
-            max-width: 520px;
-            color: #fff;
-        }
-
-        .hero-text h2 {
-            font-size: 48px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .hero-text p {
-            font-size: 18px;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: darkgrey;
-        }
-
-        .action-btn {
-            display: flex;
-            gap: 20px;
-        }
-
-        .btn-primary {
-            padding: 12px 24px;
-            background-color: #ff4d30;
-            border: none;
-            color: #fff;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-    </style>
-</head>
-
-<body>
-
-    <nav class="navbar">
-
-    <div class="logo">
-        <img src="https://static.wikia.nocookie.net/fictionalcompanies/images/8/81/Binco.jpg/revision/latest?cb=20130914005804" alt="">
-    </div>
-
-    <div class="nav-links">
-        <ul>
-        <li> <a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
-
-    {% comment %} <div class="actions">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <i class="fa-solid fa-magnifying-glass"></i>
-        
-        <a href="{% url 'login' %}">
-        <button class="appointment-btn">Login</button>
-        </a>
-        <a href="{% url 'register' %}">
-        <button class="appointment-btn">Register</button>
-        </a>
-    </div> {% endcomment %}
-    </nav>
-<br>
-    <h2 align="center">Register</h2>
 
 <form align="center" method="POST">
     {% csrf_token %}
@@ -167,12 +17,6 @@
 </form>
 
 <div align="center">
-<a href="{% url 'login' %}">Already have account? Login</a>
+    <a href="{% url 'login' %}">Already have account? Login</a>
 </div>
-
-</body>
-
-</html>
-
-
-
+{% endblock %}

@@ -1,15 +1,18 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
 <h2>Your Cart</h2>
 
 {% for item in cart_items %}
-
 <p>
     {{ item.product.name }} |
-    Quantity: {{ item.quantity }} |
-    Subtotal: ৳{{ item.subtotal }}
+    Qty: {{ item.quantity }} |
+    ৳ {{ item.subtotal }}
 </p>
-
 {% endfor %}
 
-<h3>Total: ৳{{ total }}</h3>
-
-<a href="/">Continue Shopping</a>
+<h4>Total: ৳ {{ total }}</h4>
+<a href="{% url 'home' %}">Continue Shopping</a>
+{% endblock %}
