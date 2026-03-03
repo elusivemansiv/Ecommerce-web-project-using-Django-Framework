@@ -163,7 +163,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CORS_ALLOWED_ORIGINS = [
     "https://bahari-ponno.vercel.app",
 ]
-CORS_ALLOW_ALL_ORIGINS = True
+
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://bahari-ponno-be-production.up.railway.app",
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
