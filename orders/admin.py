@@ -7,7 +7,7 @@ class OrderItemInline(admin.TabularInline):
 
 class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderItemInline]
-    list_display = ('id', 'customer', 'order_status', 'total_amount', 'order_date')
+    list_display = ('id', 'customer', 'shipping_name', 'shipping_phone', 'order_status', 'total_amount', 'order_date')
     list_filter = ('order_status', 'payment_method')
 
 admin.site.register(Order, OrderAdmin)

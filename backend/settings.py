@@ -25,10 +25,12 @@ SECRET_KEY = config("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", default=False, cast=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "bahari-ponno-be-production.up.railway.app",
+    "localhost",
+    "127.0.0.1",
 ]
 
 
@@ -162,6 +164,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # CORS Settings (dev: allow all origins so the static UI can call the API)
 CORS_ALLOWED_ORIGINS = [
     "https://bahari-ponno.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 
@@ -170,6 +174,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 CSRF_TRUSTED_ORIGINS = [
     "https://bahari-ponno-be-production.up.railway.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

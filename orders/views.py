@@ -27,20 +27,10 @@ class OrderViewSet(viewsets.ModelViewSet):
         if order.order_status != 'Pending':
             return Response({"detail": "Order can only be confirmed if it is pending."}, status=status.HTTP_400_BAD_REQUEST)
             
-        with transaction.atomic():
-            order.order_status = 'Confirmed'
-            order.save()
+        order.order_status = 'Confirmed'
+        order.save()
             
-            # Reduce stock
-            for item in order.items.all():
-                variant = item.product_variant
-                if variant:
-                    if variant.stock_quantity < item.quantity:
-                        return Response({"detail": f"Not enough stock for {variant.product.name} ({variant.amount})"}, status=status.HTTP_400_BAD_REQUEST)
-                    variant.stock_quantity -= item.quantity
-                    variant.save()
-                    
-        return Response({"status": "Order confirmed and stock reduced."})
+        return Response({"status": "Order confirmed. Stock was already reduced at creation."})
 
     @action(detail=True, methods=['post'], permission_classes=[permissions.IsAuthenticated])
     def cancel(self, request, pk=None):
@@ -52,22 +42,25 @@ class OrderViewSet(viewsets.ModelViewSet):
         if order.order_status == 'Canceled':
             return Response({"detail": "Order is already canceled."}, status=status.HTTP_400_BAD_REQUEST)
             
-        # If it was confirmed, we need to restore stock
-        was_confirmed = order.order_status in ['Confirmed', 'Shipped', 'Delivered']
-        
-        with transaction.atomic():
-            order.order_status = 'Canceled'
-            order.save()
+        order.order_status = 'Canceled'
+        order.save()
             
-            if was_confirmed:
-                # Restore stock
-                for item in order.items.all():
-                    variant = item.product_variant
-                    if variant:
-                        variant.stock_quantity += item.quantity
-                        variant.save()
-                        
-        return Response({"status": "Order canceled and stock restored if it was previously confirmed."})
+        return Response({"status": "Order status set to Canceled. Stock has been restored."})
+
+    @action(detail=True, methods=['post'], permission_classes=[permissions.IsAuthenticated])
+    def return_order(self, request, pk=None):
+        order = self.get_object()
+        
+        if request.user.role not in ['ADMIN', 'STAFF']:
+            return Response({"detail": "Not authorized."}, status=status.HTTP_403_FORBIDDEN)
+            
+        if order.order_status == 'Returned':
+            return Response({"detail": "Order is already marked as returned."}, status=status.HTTP_400_BAD_REQUEST)
+            
+        order.order_status = 'Returned'
+        order.save()
+            
+        return Response({"status": "Order status set to Returned. Stock has been restored."})
 
     @action(detail=True, methods=['patch'], permission_classes=[permissions.IsAuthenticated])
     def update_payment(self, request, pk=None):
